@@ -1,7 +1,12 @@
 FROM rocker/tidyverse
 MAINTAINER Steph Locke <steph@itsalocke.com>
-RUN installGithub.r lockedata/TextAnalysis
-ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/7f8af11f43abd0c51545643a252e433d33c36f95/mkusers.sh /
+RUN install2.r --error \
+    -r "https://cran.rstudio.com" \
+    devtools
+  && R -e 'devtools::install_github("lockedata/TextAnalysis")' \
+  && rm -rf /tmp/downloaded_packages/ /tmp/*.rds
+RUN apt-get install mkpasswd
+ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/607fb01602e143671c83216a4c5f1ad2deb10bf6/mkusers.sh /
 ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/6d967c19d9c73cecd1e2d4da0eed2cd646790bd5/users.csv /
 RUN chmod 777 /mkusers.sh
 RUN /mkusers.sh
