@@ -1,7 +1,7 @@
 FROM rocker/tidyverse
 MAINTAINER Steph Locke <steph@itsalocke.com>
 RUN installGithub.r lockedata/TextAnalysis
-ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/4f6ff668d909ad55f2b1d176ff63935c8a09bbe5/mkusers.sh /
-ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/4f6ff668d909ad55f2b1d176ff63935c8a09bbe5/users.csv /
+ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/6d967c19d9c73cecd1e2d4da0eed2cd646790bd5/mkusers.sh /
+ADD https://gist.githubusercontent.com/stephlocke/0036331e7a3338e965149833e92c1360/raw/6d967c19d9c73cecd1e2d4da0eed2cd646790bd5/users.csvv /
 RUN chmod 777 /mkusers.sh
 RUN /mkusers.sh
